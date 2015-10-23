@@ -1,0 +1,1 @@
+This is a starter project for the developing web applications section.
