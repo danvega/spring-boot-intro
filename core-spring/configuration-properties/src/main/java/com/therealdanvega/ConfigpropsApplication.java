@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-@EnableConfigurationProperties
+//@EnableConfigurationProperties
 public class ConfigpropsApplication {
 
     public static void main(String[] args) {

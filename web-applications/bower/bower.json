@@ -1,0 +1,22 @@
+{
+  "name": "bower-demo",
+  "homepage": "https://github.com/cfaddict/spring-boot-intro",
+  "authors": [
+    "Dan Vega <danvega@gmail.com>"
+  ],
+  "description": "bower demo app",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/resources/static/lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

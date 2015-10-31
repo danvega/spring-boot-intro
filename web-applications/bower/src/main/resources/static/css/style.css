@@ -1,0 +1,14 @@
+body{
+    background: #0999ce url('../images/tfsbg_2012.jpg') no-repeat;
+    background-size:100%;
+    color:#000;
+    font-size:12px;
+    line-height:180%;
+    margin:10px;
+}
+
+.intro {
+    background-color: #fff;
+    opacity: .9;
+    padding:20px;
+}
