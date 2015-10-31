@@ -1,0 +1,12 @@
+.navbar {
+    margin-top:20px;
+}
+
+header h1 {
+    font-family: 'Exo', sans-serif;
+    font-size: 38px;
+}
+
+p, address {
+    font-family: 'Roboto', sans-serif;
+}
