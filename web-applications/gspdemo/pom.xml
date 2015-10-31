@@ -21,8 +21,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-        <grailsVersion>2.4.4</grailsVersion>
-        <groovyVersion>2.3.7</groovyVersion>
+        <grailsVersion>2.5.2</grailsVersion>
+        <groovyVersion>2.4.4</groovyVersion>
 	</properties>
 
 	<dependencies>
@@ -49,6 +49,21 @@
             <artifactId>grails-gsp-spring-boot</artifactId>
             <version>1.0.0</version>
         </dependency>
+		<dependency>
+			<groupId>org.grails</groupId>
+			<artifactId>grails-web-gsp</artifactId>
+			<version>${grailsVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.grails</groupId>
+			<artifactId>grails-web-gsp-taglib</artifactId>
+			<version>${grailsVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.grails</groupId>
+			<artifactId>grails-web-jsp</artifactId>
+			<version>${grailsVersion}</version>
+		</dependency>
 
 
 	</dependencies>

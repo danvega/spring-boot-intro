@@ -19,7 +19,7 @@
     </g:each>
 
     <h3>Using a tag library</h3>
-    <g:dateFormat format="dd-MM-yyyy" date="${new Date()}" />
+    <g:dateFormat format="MM/dd/YYYY" date="${new Date()}" />
 
     <h3>Using a tag library in an expression</h3>
     <p>${g.dateFormat(format:'dd-MM-yyyy', date:new Date())}</p>

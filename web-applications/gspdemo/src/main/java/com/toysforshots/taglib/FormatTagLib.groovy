@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 @Component
 @TagLib
 class FormatTagLib {
+
     def dateFormat = { attrs, body ->
         out << new SimpleDateFormat(attrs.format).format(attrs.date)
     }
