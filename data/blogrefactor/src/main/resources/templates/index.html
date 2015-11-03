@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+	layout:decorator="layouts/main">
+<head>
+	<title>The Real Dan Vega - Home Page</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+		
+		<h2>About Me</h2>
+		<div class="row">
+			<div class="col-md-12">
+ 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl libero, molestie vitae orci nec, luctus feugiat lorem. Maecenas eu massa non neque blandit tempor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse id consectetur enim, et cursus nisl. Ut volutpat tempor accumsan. Aliquam et libero id nunc consectetur consequat at eu nibh. Nam ut justo in sapien fermentum facilisis.</p>
+				<p>Nullam sodales neque fringilla molestie facilisis. Morbi nisl neque, malesuada convallis felis vitae, pharetra maximus lorem. Fusce tincidunt sapien pretium leo scelerisque, eget egestas nisi dapibus. Sed ut magna egestas, condimentum ex vel, tempor justo. Duis ut magna et orci tincidunt vestibulum. Suspendisse sed enim nec mi convallis aliquam. Sed id urna ultricies dolor dictum vulputate. Nulla porta auctor sagittis.</p>
+			</div>
+		</div>
+	    
+	    <article>
+			<header>
+				<h2 th:text="${post.title}">title</h2>
+				<p th:text="${#calendars.format(post.postedOn, 'M/dd/yyyy hh:mm:ss a')}">postedOn</p>
+			</header>
+			<section th:utext="${post.teaser}">
+				teaser
+			</section>
+			<footer>
+				<a th:href="|@{/posts/view/}${post.slug}|">Read More</a>
+				<address>
+					Posted By <a th:href="|mailto:${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">author</span></a>
+				</address>
+			</footer>
+			<hr/>
+		</article>
+		
+	</div>
+		
+</body>
+</html>
