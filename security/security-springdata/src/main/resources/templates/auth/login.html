@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+	layout:decorator="layouts/main">
+<head>
+	<title>Security Demo - Login</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+		
+		
+		<form name="f" th:action="@{/login}" method="post" class="form-signin">
+		    <h2 class="form-signin-heading">Please sign in</h2>
+            <div th:if="${param.error}" class="alert alert-danger">    
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success"> 
+                You have been logged out.
+            </div>		    
+		    <label for="email" class="sr-only">Username</label>
+		    <input type="text" id="email" name="email" class="form-control" placeholder="Email Address" required="true" />
+		    <label for="password" class="sr-only">Password</label>
+		    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
+		    <div class="checkbox">
+		        <label>
+		            <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
+		        </label>
+		    </div>
+		    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+		
+	</div>
+		
+</body>
+</html>
