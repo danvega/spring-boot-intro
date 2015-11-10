@@ -13,14 +13,15 @@ import com.therealdanvega.service.PostService;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
-	
+
 	private PostService postService;
 	
 	@Autowired
 	public PostController(PostService postService){
 		this.postService = postService;
-	}
-
+	}	
+	
+	
 	@RequestMapping( value = "/", method = RequestMethod.GET )
 	public Iterable<Post> list(){
 		return postService.list();
@@ -28,14 +29,14 @@ public class PostController {
 	
 	@RequestMapping( value = "/", method = RequestMethod.POST )
 	public Post create(@RequestBody Post post){
-		return postService.save(post);
+		return postService.create(post);
 	}
 	
 	@RequestMapping( value = "/{id}", method = RequestMethod.GET )
 	public Post read(@PathVariable(value="id") long id){
-		return postService.getPost(id);
+		return postService.read(id);
 	}
-
+	
 	@RequestMapping( value = "/{id}", method = RequestMethod.PUT )
 	public Post update(@PathVariable(value="id") long id, @RequestBody Post post){
 		return postService.update(id,post);
@@ -44,7 +45,7 @@ public class PostController {
 	@RequestMapping( value = "/{id}", method = RequestMethod.DELETE )
 	public void delete(@PathVariable(value="id") int id){
 		postService.delete(id);
-	}
-
+	}	
+	
 	
 }

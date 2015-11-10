@@ -22,9 +22,6 @@ public class RestStarterApplication {
     @Bean
     CommandLineRunner runner(AuthorRepository authorRepository, PostRepository postRepository) {
     	return args -> {
-    		
-			authorRepository.deleteAll();
-			postRepository.deleteAll();
 			
 	    	Author dv = new Author("Dan","Vega","danvega@gmail.com");
 	    	authorRepository.save( dv );

@@ -27,13 +27,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post getPost(long id) {
+	public Post read(long id) {
 		return postRepository.findOne(id);
 	}
 
 	@Override
 	@Transactional
-	public Post save(Post post) {
+	public Post create(Post post) {
 		// save the new author
 		authorRepository.save(post.getAuthor());
 		return postRepository.save(post);

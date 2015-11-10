@@ -6,12 +6,11 @@ public interface PostService {
 	
 	Iterable<Post> list();
 	
-	Post getPost(long id);
+	Post create(Post post);
 	
-	Post save(Post post);
-
-	void delete(long id);
-
+	Post read(long id);
+	
 	Post update(long id, Post post);
 	
+	void delete(long id);
 }
