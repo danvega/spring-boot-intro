@@ -9,6 +9,6 @@ import com.therealdanvega.domain.Post;
 
 public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
-	List<Post> findByAuthorFirstName(@Param("firstName") String firstName);
-
+		List<Post> findByTitleContaining(@Param("title") String title);
+	
 }
