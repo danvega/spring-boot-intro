@@ -3,6 +3,7 @@ package com.therealdanvega.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,27 +20,27 @@ public class RegistrationController {
 
 	@RequestMapping("/signup")
 	public String signup(){
-		return "Please sign up for our service";
+		return "Please sign up for our service.";
 	}
 	
 	@RequestMapping("/signup-success")
 	public String signupSuccess(){
 		
-		// create a user that will receive this notification
+		// create user 
 		User user = new User();
 		user.setFirstName("Dan");
 		user.setLastName("Vega");
-		user.setEmailAddress("danvega@gmail.com");
+		user.setEmailAddress("dan@clecares.org");
 		
-		// send notification 
+		// send a notification
 		try {
-			notificationService.sendNotification(user);
-		}catch(Exception e){
-			logger.info("Error sending email :" + e.getMessage());
+			notificationService.sendNotificaitoin(user);
+		}catch( MailException e ){
+			// catch error
+			logger.info("Error Sending Email: " + e.getMessage());
 		}
 		
-		
-		return "Thank you for registering with us";
+		return "Thank you for registering with us.";
 	}
 	
 }

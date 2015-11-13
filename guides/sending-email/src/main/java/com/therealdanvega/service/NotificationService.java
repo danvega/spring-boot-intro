@@ -10,22 +10,23 @@ import com.therealdanvega.domain.User;
 
 @Service
 public class NotificationService {
-	
+
 	private JavaMailSender javaMailSender;
 	
 	@Autowired
 	public NotificationService(JavaMailSender javaMailSender){
 		this.javaMailSender = javaMailSender;
 	}
-
-	public void sendNotification(User user) throws MailException {
+	
+	public void sendNotificaitoin(User user) throws MailException {
+		// send email
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmailAddress());
-		mail.setFrom("dan@clecares.org");
-		mail.setSubject("Toys for Shots");
-		mail.setText("This is the body of the email message");
+		mail.setFrom("danvega@gmail.com");
+		mail.setSubject("Toys for Shots is coming soon!");
+		mail.setText("This is a cool email notificaiton");
 		
 		javaMailSender.send(mail);
 	}
-
+	
 }
