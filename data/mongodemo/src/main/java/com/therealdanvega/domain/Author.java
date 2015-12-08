@@ -1,6 +1,7 @@
 package com.therealdanvega.domain;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -18,7 +19,7 @@ public class Author {
 	private List<Post> posts;
 	
 	public Author(){
-	
+		posts = new ArrayList<Post>();
 	}
 
 	public BigInteger getId() {
@@ -59,6 +60,10 @@ public class Author {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+	
+	public void addPost(Post post){
+		this.posts.add(post);
 	}
 
 	@Override
