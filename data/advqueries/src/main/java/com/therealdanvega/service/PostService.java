@@ -18,17 +18,30 @@ public class PostService {
 		this.postRepository = postRepository;
 	}
 	
-	public Post getLatestPost(){
-		return postRepository.findFirstByOrderByPostedOnDesc();
+	public Iterable<Post> list(){
+		return postRepository.findAll();
+	}
+	
+	// CUSTOM QUERIES
+
+	public List<Post> byAuthor(String first) {
+		return postRepository.findAllByAuthorFirstNameIgnoreCaseOrderByPostedOnDesc(first);
 	}
 
-	public List<Post> list() {
-		return postRepository.findAllByOrderByPostedOnDesc();
+	public List<Post> byKeyword(String keyword) {
+		return postRepository.findAllByKeywordsLikeIgnoreCase('%' + keyword + '%');
 	}
 
-	public Post getBySlug(String slug) {
-		return postRepository.findBySlug(slug);
+	public List<Post> findActive() {
+		return postRepository.findAllByActiveTrue();
 	}
 
+	public List<Post> findByAuthorAndKeyword(String first, String keyword) {
+		return postRepository.findAllByAuthorFirstNameIgnoreCaseAndKeywordsLikeIgnoringCase(first, keyword);
+	}
+
+	public Post findBySlug(String slug) {
+		return postRepository.findPostBySlugNative(slug);
+	}
 	
 }

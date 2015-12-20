@@ -1,6 +1,10 @@
 package com.therealdanvega;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -34,18 +38,56 @@ public class DataLoader {
 		Author dv = new Author("Dan","Vega","danvega@gmail.com");
 		authorRepository.save(dv);
 		
-		// create a post
+		// create some posts
+		createPosts( dv );
+		
+	}
+	
+	private void createPosts(Author author) {
+		
+		Date yesterday = null;
+		try {
+			yesterday = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a").parse("12/18/2015 12:00:00 PM");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		Post post = new Post("Spring Data Rocks!");
 		post.setSlug("spring-data-rocks");
 		post.setTeaser( getTeaser() );
 		post.setBody( getBody() );
-		post.setPostedOn( new Date() );
-		post.setAuthor(dv);
+		post.setPostedOn( yesterday );
+		post.setKeywords( getSpringKeywords() );
+		post.setActive(false);
+		post.setAuthor( author );
 		postRepository.save(post);
+		
+		Post grails = new Post("Grails is awesome!");
+		grails.setSlug("grails-is-awesome");
+		grails.setTeaser( getTeaser() );
+		grails.setBody( getBody() );
+		grails.setPostedOn( new Date() );
+		grails.setKeywords( getGrailsKeywords() );
+		grails.setActive(true);
+		grails.setAuthor( author );
+		postRepository.save(grails);
 		
 	}
 
+	private List<String> getSpringKeywords(){
+		List<String> keywords = new ArrayList<String>();
+		keywords.add("Spring");
+		keywords.add("Spring Data");
+		return keywords;
+	}
 
+	private List<String> getGrailsKeywords(){
+		List<String> keywords = new ArrayList<String>();
+		keywords.add("Grails");
+		keywords.add("Groovy");
+		return keywords;
+	}
+	
 	private String getTeaser(){
 		return "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et euismod tortor. Pellentesque sed neque a magna sagittis placerat. Donec nisi dolor, efficitur nec dictum sit amet, sollicitudin consequat tortor. Integer a tincidunt erat, non tempor nisi. Duis quis ex ut tellus sagittis accumsan. Curabitur vehicula, dui ac aliquam sodales, lacus augue egestas odio, ac porttitor ipsum orci nec lectus. Maecenas maximus libero quam, eu mollis tellus blandit vitae.</p>";
 	}
