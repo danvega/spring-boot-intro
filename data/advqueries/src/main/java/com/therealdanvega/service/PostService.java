@@ -24,7 +24,7 @@ public class PostService {
 	
 	// CUSTOM QUERIES
 
-	public List<Post> byAuthor(String first) {
+	public List<Post> byAuthor(String first){
 		return postRepository.findAllByAuthorFirstNameIgnoreCaseOrderByPostedOnDesc(first);
 	}
 
@@ -36,12 +36,9 @@ public class PostService {
 		return postRepository.findAllByActiveTrue();
 	}
 
-	public List<Post> findByAuthorAndKeyword(String first, String keyword) {
-		return postRepository.findAllByAuthorFirstNameIgnoreCaseAndKeywordsLikeIgnoringCase(first, keyword);
-	}
-
 	public Post findBySlug(String slug) {
 		return postRepository.findPostBySlugNative(slug);
 	}
+	
 	
 }

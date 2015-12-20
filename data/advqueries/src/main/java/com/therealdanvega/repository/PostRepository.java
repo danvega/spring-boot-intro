@@ -12,36 +12,33 @@ import com.therealdanvega.domain.Post;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
 	
-	// AUTHOR =====================================================================================================
+	// AUTHOR ======================================================================================================
 	
 	List<Post> findAllByAuthorFirstName(String first);
 	
 	List<Post> findAllByAuthorFirstNameIgnoreCase(String first);
-
+	
 	List<Post> findAllByAuthorFirstNameIgnoreCaseOrderByPostedOnDesc(String first);
 	
 	List<Post> findAllByAuthorFirstNameAndAuthorLastName(String first,String last);
 	
-	// KEYWORDS ===================================================================================================
+	// KEYWORDS ====================================================================================================
 	
 	List<Post> findAllByKeywords(String keyword);
 	
 	List<Post> findAllByKeywordsLikeIgnoreCase(String keyword);
 	
-	
-	// ACTIVE =====================================================================================================
+	// ACTIVE ======================================================================================================
 	
 	List<Post> findAllByActiveTrue();
 	
 	List<Post> findAllByActiveFalse();
-	
 
-	// AUTHOR & KEYWORDS ===========================================================================================
+	// AUTHOR & KEYWORDS ===========================================================================================	
 	
-	//List<Post> findAllByAuthorFirstNameAndKeywordsLikeIgnoringCase(String first,String keyword);
-	List<Post> findAllByAuthorFirstNameIgnoreCaseAndKeywordsLikeIgnoringCase(String first,String keyword);
+	List<Post> findAllByAuthorFirstNameAndKeywords(String first, String keywords);
 	
-	List<Post> findAllByAuthorFirstNameIgnoreCaseAndKeywordsLikeIgnoringCaseOrderByPostedOnDesc(String first,String keyword);	
+	List<Post> findAllByAuthorFirstNameAndKeywordsOrderByPostedOnDesc(String first, String keywords);
 	
 	
 	// QUERY =======================================================================================================
@@ -50,9 +47,8 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 	Post findPostBySlug(String slug);
 	
 	@Query("select p from Post p where p.slug = :slug")
-	Post findPostBySlugNamedParam(@Param("slug") String slug);
+	Post findPostBySlugNamedParam( @Param("slug") String slug);
 	
-	@Query( value = "SELECT * FROM Post WHERE SLUG = :slug", nativeQuery = true )
-	Post findPostBySlugNative(@Param("slug") String slug);
-	
+	@Query( value="SELECT * FROM Post where slug = :slug", nativeQuery = true )
+	Post findPostBySlugNative( @Param("slug") String slug);
 }

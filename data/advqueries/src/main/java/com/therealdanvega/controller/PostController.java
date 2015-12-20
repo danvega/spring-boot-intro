@@ -27,8 +27,6 @@ public class PostController {
 		return postService.list();
 	}
 	
-	// CUSTOM QUERIES
-	
 	@RequestMapping("/byAuthor/{first}")
 	public List<Post> byAuthor( @PathVariable(value="first") String first ) {
 		return postService.byAuthor(first);
@@ -40,19 +38,12 @@ public class PostController {
 	}
 	
 	@RequestMapping("/active")
-	public List<Post> findActive(){
+	public List<Post> active() {
 		return postService.findActive();
 	}
 	
-	// posts/byAuthorKeyword?first=dan&keyword=grails
-	@RequestMapping("/byAuthorKeyword")
-	public List<Post> byAuthorKeyword( @RequestParam(value="first") String first, @RequestParam(value="keyword") String keyword ){
-		return postService.findByAuthorAndKeyword(first,keyword);
-	}
-	
 	@RequestMapping("/slug/{slug}")
-	public Post slug( @PathVariable(value="slug") String slug ) {
+	public Post findPostBySlug(@PathVariable(value="slug") String slug ) {
 		return postService.findBySlug(slug);
 	}
-	
 }
