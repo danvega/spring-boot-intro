@@ -49,5 +49,8 @@ public class DatabaseLoader {
     	post.setAuthor(dv);
     	postRepository.save(post);
     	
+    	dv.getPosts().add(post);
+    	authorRepository.save( dv );
+    	
     }
 }
