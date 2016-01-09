@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>The Real Dan Vega</title>
+	<title>Blog Main Layout</title>
 	
 	<link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -26,11 +26,11 @@
 		<nav class="navbar navbar-default">
 		    <div class="container-fluid">
 		        <div class="navbar-header">
-		            <a class="navbar-brand" href="/">therealdanvega.com</a>
+		            <a class="navbar-brand" href="/">My Blog</a>
 		        </div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				    <ul class="nav navbar-nav">
-				        <li class="active"><a href="/">Home</a></li>
+				        <li class=""><a href="/">Home</a></li>
 				        <li class="dropdown">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
@@ -42,9 +42,21 @@
 				            <ul class="dropdown-menu">
 				                <li><a href="/authors/list">List</a></li>
 				            </ul>
-				        </li>				        
+				        </li>
+						<li class="dropdown active" sec:authorize="hasRole('ADMIN')">
+				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+				            <ul class="dropdown-menu">
+				                <li><a href="/admin/posts/">Posts</a></li>
+				                <li><a href="/admin/authors/">Authors</a></li>				                
+				            </ul>
+				        </li>					        
 				    </ul>
-				    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Guest User</a></p>
+				    <div class="navbar-text navbar-right">
+			            Welcome <span sec:authentication="name">Guest</span>
+				    	<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+				    		| <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
+				    	</form>
+				    </div>
 				</div>
 		    </div>
 		</nav>
@@ -53,7 +65,7 @@
 		</div>
 		
 		<footer>
-			<p>Copyright TheRealDanVega 2015</p>
+			<p>Copyright My Blog 2015</p>
 		</footer>
 	
 	</div>

@@ -1,11 +1,8 @@
 package com.therealdanvega.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Author {
@@ -16,26 +13,27 @@ public class Author {
 	private String firstName;
 	private String lastName;
 	private String email;
-	
-	//posts
-	@OneToMany( mappedBy = "author" )
-	private List<Post> posts;
-	
-	public List<Post> getPosts() {
-		return posts;
-	}
 
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
-
-	private Author(){
-		
-	}
+	@SuppressWarnings("unused")
+	private Author(){}
 	
 	public Author(String first, String last){
 		this.setFirstName(first);
 		this.setLastName(last);
+	}
+	
+	public Author(String first, String last, String email){
+		this.setFirstName(first);
+		this.setLastName(last);
+		this.setEmail(email);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
