@@ -43,7 +43,7 @@
 				                <li><a href="/authors/list">List</a></li>
 				            </ul>
 				        </li>
-						<li class="dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+						<li class="dropdown" th:class="${controllerName == 'AdminPost'} ? 'dropdown active' : 'dropdown'" sec:authorize="hasRole('ROLE_ADMIN')">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
 				                <li><a href="/admin/posts/">Posts</a></li>
@@ -52,10 +52,11 @@
 				        </li>					        
 				    </ul>
 				    <div class="navbar-text navbar-right">
-			            Welcome <span sec:authentication="name">Guest</span>
+			            Welcome <span sec:authentication="name">Guest</span> | 
 				    	<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
-				    		| <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
+				    		<a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
 				    	</form>
+				    	<a sec:authorize="!isAuthenticated()" th:href="@{/login}"> Login</a>
 				    </div>
 				</div>
 		    </div>
@@ -63,10 +64,6 @@
 		
 		<div layout:fragment="content">
 		</div>
-		
-		<footer>
-			<p>Copyright My Blog 2015</p>
-		</footer>
 	
 	</div>
 

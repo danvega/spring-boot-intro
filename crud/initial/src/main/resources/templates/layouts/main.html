@@ -30,20 +30,20 @@
 		        </div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				    <ul class="nav navbar-nav">
-				        <li class=""><a href="/">Home</a></li>
-				        <li class="dropdown">
+				        <li th:class="${controllerName == 'Home'} ? 'active'"><a href="/">Home</a></li>
+				        <li class="dropdown" th:class="${controllerName == 'Post'} ? 'dropdown active' : 'dropdown'">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
 				                <li><a href="/posts/list">List</a></li>
 				            </ul>
 				        </li>
-				        <li class="dropdown">
+				        <li class="dropdown" th:class="${controllerName == 'Author'} ? 'dropdown active' : 'dropdown'">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Authors <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
 				                <li><a href="/authors/list">List</a></li>
 				            </ul>
 				        </li>
-						<li class="dropdown active" sec:authorize="hasRole('ROLE_ADMIN')">
+						<li class="dropdown" th:class="${controllerName.startsWith('Admin')} ? 'dropdown active' : 'dropdown'" sec:authorize="hasRole('ROLE_ADMIN')">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
 				                <li><a href="/admin/posts/">Posts</a></li>
@@ -52,10 +52,11 @@
 				        </li>					        
 				    </ul>
 				    <div class="navbar-text navbar-right">
-			            Welcome <span sec:authentication="name">Guest</span>
+			            Welcome <span sec:authentication="name">Guest</span> | 
 				    	<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
-				    		| <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
+				    		<a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
 				    	</form>
+				    	<a sec:authorize="!isAuthenticated()" th:href="@{/login}"> Login</a>
 				    </div>
 				</div>
 		    </div>
@@ -63,10 +64,6 @@
 		
 		<div layout:fragment="content">
 		</div>
-		
-		<footer>
-			<p>Copyright My Blog 2015</p>
-		</footer>
 	
 	</div>
 

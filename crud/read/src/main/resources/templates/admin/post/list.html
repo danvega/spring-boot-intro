@@ -17,8 +17,8 @@
 					<th>Title</th>
 					<th>Posted On</th>
 					<th>Slug</th>
-					<th>Keywords</th>
 					<th>Author</th>
+					<th>View</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,16 +26,22 @@
 					<td th:text="${post.title}">title</td>
 					<td th:text="${#calendars.format(post.postedOn,'M/dd/yyyy hh:mm:ss a')}">posted on</td>
 					<td th:text="${post.slug}">slug</td>
-					<td th:text="${post.keywords}">keywords</td>
-					<td th:text="|${post.author.firstName} ${post.author.lastName}|">author</td>
+					<td th:text="${post.author.firstName + ' ' + post.author.lastName}">author</td>
+					<td><a href="#" th:href="@{/admin/posts/view/} + ${post.id}">View</a></td>
 				</tr>
 			</tbody>
 		</table>
+		
+		<a href="#">Add New Post</a>
+		<br/><br/>
 		
 		<p th:if="${posts.size() == 0}">
 			<div class="alert alert-warning" role="alert">No Posts Found.</div>
 		</p>
 		
+		<p th:text="${newControllerName}">new controller name</p>
+		<p th:text="${controllerName}">controllerName</p>
+		<p th:text="${actionName}">controllerName</p>
 		
 	</div>
 		
