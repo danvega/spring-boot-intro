@@ -33,5 +33,9 @@ public class PostService {
 	public List<Post> listByAuthor(Long id) {
 		return postRepository.findAllByAuthorIdOrderByPostedOnDesc(id);
 	}
+
+	public Post get(Long id) {
+		return postRepository.findOne(id);
+	}
 	
 }
