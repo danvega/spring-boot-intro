@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>View Posts</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<h2>View Post</h2>
+
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Title: </label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${post.title}">title</p>
+				</div>
+			</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Slug</label>
+		    	<div class="col-md-10">
+		    		<p class="form-control-static" th:text="${post.slug}">slug</p>
+		    	</div>
+		  	</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Posted On</label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${#calendars.format(post.postedOn, 'M/dd/yyyy hh:mm:ss a')}">postedOn</p>
+				</div>
+			</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Keywords</label>
+		    	<div class="col-md-10">
+		    		<p class="form-control-static" th:text="${post.keywords}">keywords</p>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label class="col-sm-2 control-label">Active</label>
+		    	<div class="col-md-10">
+		    		<p class="form-control-static" th:text="${post.active}">active</p>
+		    	</div>
+		  	</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Author</label>
+		    	<div class="col-md-10">
+		    		<p class="form-control-static" th:text="${post.author.lastName + ', ' + post.author.firstName}">author</p>
+		    	</div>
+		  	</div>		  	
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Teaser</label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${post.teaser}">teaser</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Body</label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${post.body}">body</p>
+				</div>
+			</div>
+		</form>
+		
+		<a th:href="@{/admin/posts/}">Back To Posts List</a>
+		<br/><br/><br/>
+		
+	</div>
+		
+</body>
+</html>
