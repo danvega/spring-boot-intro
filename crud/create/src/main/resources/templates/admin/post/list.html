@@ -32,7 +32,7 @@
 			</tbody>
 		</table>
 		
-		<a href="#">Add New Post</a>
+		<a th:href="@{/admin/post/create}">Add New Post</a>
 		<br/><br/>
 		
 		<p th:if="${posts.size() == 0}">

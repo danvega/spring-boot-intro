@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>Create New Post</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<h2>Create New Post</h2>
+		<br/>
+
+		<form class="form-horizontal" th:object="${post}" th:action="@{/admin/post/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Title: </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" th:field="*{title}" />
+				</div>
+			</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Slug</label>
+		    	<div class="col-md-10">
+		    		<input type="text" class="form-control" th:field="*{slug}" />
+		    	</div>
+		  	</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Posted On</label>
+				<div class="col-md-10">
+					<input type="datetime" class="form-control" th:field="*{postedOn}" />
+				</div>
+			</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Keywords</label>
+		    	<div class="col-md-10">
+		    		<input type="text" class="form-control" th:field="*{keywords}" />
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label class="col-sm-2 control-label">Active</label>
+		    	<div class="col-md-10">
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" th:field="*{active}"/>
+					  </label>
+					</div>    		
+		    	</div>
+		  	</div>
+			<div class="form-group">
+		    	<label class="col-sm-2 control-label">Author</label>
+		    	<div class="col-md-10">
+		    		<!-- loop over available  authors -->
+					<select class="form-control" th:field="*{author}">
+						<option value="">Select Author</option>
+						<option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}">Authors</option>
+					</select>
+		    	</div>
+		  	</div>		  	
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Teaser</label>
+				<div class="col-md-10">
+					<textarea class="form-control" rows="3" th:field="*{teaser}">teaser</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Body</label>
+				<div class="col-md-10">
+					<textarea class="form-control" rows="5" th:field="*{body}">body</textarea>
+				</div>
+			</div>		  	
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+		
+	</div>
+		
+</body>
+</html>

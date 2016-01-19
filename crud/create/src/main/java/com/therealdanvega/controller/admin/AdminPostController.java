@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.therealdanvega.domain.Post;
+import com.therealdanvega.service.AuthorService;
 import com.therealdanvega.service.PostService;
 
 @Controller
@@ -14,10 +17,12 @@ import com.therealdanvega.service.PostService;
 public class AdminPostController {
 	
 	private PostService postService;
+	private AuthorService authorService;
 	
 	@Autowired
-	public AdminPostController(PostService postService) {
+	public AdminPostController(PostService postService, AuthorService authorService) {
 		this.postService = postService;
+		this.authorService = authorService;
 	}
 	
 	@RequestMapping("/admin/posts")
@@ -30,6 +35,21 @@ public class AdminPostController {
 	public String view(@PathVariable Long id, Model model) {
 		model.addAttribute("post", postService.get(id));
 		return "admin/post/view";
+	}
+	
+	// create | save
+	
+	@RequestMapping("/admin/post/create")
+	public String create(Model model) {
+		model.addAttribute("post", new Post());
+		model.addAttribute("authors", authorService.list());
+		return "admin/post/create";
+	}
+	
+	@RequestMapping( value = "/admin/post/save", method = RequestMethod.POST )
+	public String save(Post post) {
+		Post savedPost = postService.save(post);
+		return "redirect:/admin/post/" + savedPost.getId();
 	}
 	
 }
