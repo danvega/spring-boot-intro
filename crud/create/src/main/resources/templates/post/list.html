@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>List Posts</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+	    <article th:each="post : ${posts}">
+			<header>
+				<h2 th:text="${post.title}">title</h2>
+				<p th:text="${#calendars.format(post.postedOn,'M/dd/yyyy hh:mm:ss a')}">postedOn</p>
+			</header>
+			<section th:utext="${post.teaser}">
+				teaser
+			</section>
+			<footer>
+				<a th:href="|@{/posts/view/}${post.slug}|">Read More</a>
+				<address>
+					Posted By <a th:href="|mailto:${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">author</span></a>
+				</address>
+			</footer>
+			<hr/>
+		</article>
+
+		<p th:if="${posts.size() == 0}">
+			<div class="alert alert-warning" role="alert">No Posts Found.</div>
+		</p>
+		
+	</div>
+		
+</body>
+</html>
