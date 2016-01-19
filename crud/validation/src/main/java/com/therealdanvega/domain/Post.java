@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.therealdanvega.json.JsonDateSerializer;
 
@@ -21,6 +24,8 @@ public class Post {
 
 	@Id @GeneratedValue
 	private Long id;
+	
+	@NotEmpty
 	private String title;
 	
 	@Column(columnDefinition = "TEXT")
@@ -32,6 +37,7 @@ public class Post {
 	private String slug;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat ( pattern="M/dd/yyyy hh:mm:ss a")
 	private Date postedOn;
 	
 	@ElementCollection
@@ -42,8 +48,9 @@ public class Post {
 	@ManyToOne
 	private Author author;
 	
-	@SuppressWarnings("unused")
-	public Post(){}
+	public Post(){
+		this.postedOn = new Date();
+	}
 	
 	public Post(String title){
 		this.setTitle(title);

@@ -14,10 +14,12 @@
 
 		<form class="form-horizontal" th:object="${post}" th:action="@{/admin/post/save}" method="post">
 			<input type="hidden" th:field="*{id}" />
-			<div class="form-group">
+			
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('title')}? 'has-error'">
 				<label class="col-sm-2 control-label">Title: </label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" th:field="*{title}" />
+					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:class="help-block">Title Errors</span>
 				</div>
 			</div>
 			<div class="form-group">
