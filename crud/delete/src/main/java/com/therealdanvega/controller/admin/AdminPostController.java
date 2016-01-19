@@ -73,7 +73,7 @@ public class AdminPostController {
 	@RequestMapping("/admin/post/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		postService.delete(id);
-		redirectAttrs.addFlashAttribute("message", "Post Deleted!");
+		redirectAttrs.addFlashAttribute("message", "Post was deleted!");
 		return "redirect:/admin/posts";
 	}
 	

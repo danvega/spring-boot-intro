@@ -51,5 +51,4 @@ public class AdminPostController {
 		Post savedPost = postService.save(post);
 		return "redirect:/admin/post/" + savedPost.getId();
 	}
-	
 }

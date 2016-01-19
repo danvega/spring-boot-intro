@@ -2,6 +2,7 @@ package com.therealdanvega.controller.admin;
 
 import javax.validation.Valid;
 
+import org.neo4j.cypher.internal.compiler.v2_1.commands.expressions.PathValueBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -63,10 +64,10 @@ public class AdminPostController {
 	}
 	
 	@RequestMapping("/admin/post/edit/{id}")
-	public String edit(@PathVariable Long id, Model model){
+	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("post", postService.get(id));
-		model.addAttribute("authors", authorService.list());
-		return "admin/post/postForm";		
+		model.addAttribute("authors", authorService.list());		
+		return "admin/post/postForm";
 	}
 	
 }

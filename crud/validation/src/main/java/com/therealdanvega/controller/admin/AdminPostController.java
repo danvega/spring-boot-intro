@@ -51,15 +51,15 @@ public class AdminPostController {
 	
 	@RequestMapping( value = "/admin/post/save", method = RequestMethod.POST )
 	public String save(@Valid Post post, BindingResult bindingResult, Model model) {
-				
-		if( bindingResult.hasErrors() ){
+		
+		if( bindingResult.hasErrors() ) {
 			model.addAttribute("authors", authorService.list());
 			return "admin/post/postForm";
 		} else {
 			Post savedPost = postService.save(post);
-			return "redirect:/admin/post/" + savedPost.getId();			
+			return "redirect:/admin/post/" + savedPost.getId();
 		}
-
+		
 	}
 	
 }
