@@ -43,7 +43,7 @@ public class Post {
 	private Author author;
 	
 	@SuppressWarnings("unused")
-	private Post(){}
+	public Post(){}
 	
 	public Post(String title){
 		this.setTitle(title);
