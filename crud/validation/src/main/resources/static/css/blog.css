@@ -53,3 +53,8 @@ address {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.required {
+	color:#a94442;
+	font-weight:bold;
+}

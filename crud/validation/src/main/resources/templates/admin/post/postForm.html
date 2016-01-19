@@ -14,30 +14,32 @@
 
 		<form class="form-horizontal" th:object="${post}" th:action="@{/admin/post/save}" method="post">
 			<input type="hidden" th:field="*{id}" />
-			
 			<div th:class="form-group" th:classappend="${#fields.hasErrors('title')}? 'has-error'">
-				<label class="col-sm-2 control-label">Title: </label>
+				<label class="col-sm-2 control-label">Title <span class="required">*</span></label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" th:field="*{title}" />
+					<input type="text" class="form-control" th:field="*{title}"/>
 					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:class="help-block">Title Errors</span>
 				</div>
 			</div>
-			<div class="form-group">
-		    	<label class="col-sm-2 control-label">Slug</label>
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('slug')}? 'has-error'">
+		    	<label class="col-sm-2 control-label">Slug <span class="required">*</span></label>
 		    	<div class="col-md-10">
 		    		<input type="text" class="form-control" th:field="*{slug}" />
+		    		<span th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}" th:class="help-block">Slug Errors</span>
 		    	</div>
 		  	</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Posted On</label>
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('postedOn')}? 'has-error'">
+				<label class="col-sm-2 control-label">Posted On <span class="required">*</span></label>
 				<div class="col-md-10">
 					<input type="datetime" class="form-control" th:field="*{postedOn}" />
+					<span th:if="${#fields.hasErrors('postedOn')}" th:errors="*{postedOn}" th:class="help-block">Posted On Errors</span>
 				</div>
 			</div>
-			<div class="form-group">
-		    	<label class="col-sm-2 control-label">Keywords</label>
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('keywords')}? 'has-error'">
+		    	<label class="col-sm-2 control-label">Keywords <span class="required">*</span></label>
 		    	<div class="col-md-10">
 		    		<input type="text" class="form-control" th:field="*{keywords}" />
+		    		<span th:if="${#fields.hasErrors('keywords')}" th:errors="*{keywords}" th:class="help-block">Keywords Errors</span>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -50,14 +52,14 @@
 					</div>    		
 		    	</div>
 		  	</div>
-			<div class="form-group">
-		    	<label class="col-sm-2 control-label">Author</label>
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('author')}? 'has-error'">
+		    	<label class="col-sm-2 control-label">Author <span class="required">*</span></label>
 		    	<div class="col-md-10">
-		    		<!-- loop over available  authors -->
 					<select class="form-control" th:field="*{author}">
 						<option value="">Select Author</option>
 						<option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}">Authors</option>
 					</select>
+					<span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" th:class="help-block">Author Errors</span>
 		    	</div>
 		  	</div>		  	
 			<div class="form-group">
@@ -66,14 +68,17 @@
 					<textarea class="form-control" rows="3" th:field="*{teaser}">teaser</textarea>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Body</label>
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('body')}? 'has-error'">
+				<label class="col-sm-2 control-label">Body <span class="required">*</span></label>
 				<div class="col-md-10">
-					<textarea class="form-control" rows="5" th:field="*{body}">body</textarea>
+					<textarea class="form-control" rows="7" th:field="*{body}">body</textarea>
+					<span th:if="${#fields.hasErrors('body')}" th:errors="*{body}" th:class="help-block">Body Errors</span>
 				</div>
 			</div>		  	
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-primary pull-right">Submit</button>
 		</form>
+		
+		<br/><br/><br/>
 		
 	</div>
 		

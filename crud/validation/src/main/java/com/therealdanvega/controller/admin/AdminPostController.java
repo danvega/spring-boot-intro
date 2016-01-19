@@ -53,6 +53,7 @@ public class AdminPostController {
 	public String save(@Valid Post post, BindingResult bindingResult, Model model) {
 				
 		if( bindingResult.hasErrors() ){
+			model.addAttribute("authors", authorService.list());
 			return "admin/post/postForm";
 		} else {
 			Post savedPost = postService.save(post);

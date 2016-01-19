@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,29 +29,35 @@ public class Post {
 	
 	@NotEmpty
 	private String title;
-	
-	@Column(columnDefinition = "TEXT")
-	private String body;
-	
-	@Column(columnDefinition = "TEXT")
-	private String teaser;
-	
+
+	@NotEmpty
 	private String slug;
 	
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat ( pattern="M/dd/yyyy hh:mm:ss a")
-	private Date postedOn;
+	private Date postedOn;	
 	
+	@Size(min=1, max=2)
 	@ElementCollection
 	private List<String> keywords;
 	
 	private Boolean active;
-
+	
+	@NotNull
 	@ManyToOne
 	private Author author;
 	
+	@Column(columnDefinition = "TEXT")
+	private String teaser;
+	
+	@NotEmpty
+	@Column(columnDefinition = "TEXT")
+	private String body;
+	
 	public Post(){
 		this.postedOn = new Date();
+		this.active = true;
 	}
 	
 	public Post(String title){
