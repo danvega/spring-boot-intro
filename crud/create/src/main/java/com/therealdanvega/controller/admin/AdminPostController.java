@@ -43,7 +43,7 @@ public class AdminPostController {
 	public String create(Model model) {
 		model.addAttribute("post", new Post());
 		model.addAttribute("authors", authorService.list());
-		return "admin/post/create";
+		return "admin/post/postForm";
 	}
 	
 	@RequestMapping( value = "/admin/post/save", method = RequestMethod.POST )
