@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title th:text="|View Post - ${post.title}|">View Post</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<ol class="breadcrumb">
+			<li><a href="/">Home</a></li>
+			<li><a href="/posts/list">Posts</a></li>
+			<li class="active" th:text="${post.title}"></li>
+		</ol>
+	
+	    <article>
+			<header>
+				<h2 th:text="${post.title}">title</h2>
+				<p th:text="${#calendars.format(post.postedOn,'M/dd/yyyy hh:mm a')}">postedOn</p>
+			</header>
+			<section th:utext="${post.body}">
+				body
+			</section>
+			<footer>
+				<address>
+					Posted By <a th:href="|mailto:${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">author</span></a>
+				</address>
+			</footer>
+			<hr/>
+		</article>
+
+	</div>
+		
+</body>
+</html>
