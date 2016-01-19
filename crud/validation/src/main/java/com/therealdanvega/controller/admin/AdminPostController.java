@@ -51,11 +51,6 @@ public class AdminPostController {
 	
 	@RequestMapping( value = "/admin/post/save", method = RequestMethod.POST )
 	public String save(@Valid Post post, BindingResult bindingResult, Model model) {
-		
-		System.out.println(bindingResult.hasErrors());
-		
-		System.out.println(bindingResult.hasFieldErrors());
-		System.out.println(bindingResult.getFieldErrors().toString());
 				
 		if( bindingResult.hasErrors() ){
 			return "admin/post/create";
