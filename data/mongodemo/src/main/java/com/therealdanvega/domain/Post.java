@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -11,23 +12,24 @@ public class Post {
 
 	@Id
 	private BigInteger id;
-	
+
 	private String title;
-	
+
 	private String body;
-	
+
 	private String teaser;
-	
+
 	private String slug;
-	
+
 	private Date postedOn;
 
+	@DBRef
 	private Author author;
-	
+
 	public Post(){
-		
+
 	}
-	
+
 	public Post(String title){
 		this.setTitle(title);
 	}
@@ -62,7 +64,7 @@ public class Post {
 	public void setSlug(String slug) {
 		this.slug = slug;
 	}
-	
+
 	public String getBody() {
 		return body;
 	}
@@ -91,5 +93,5 @@ public class Post {
 	public String toString() {
 		return "Post [title=" + title + "]";
 	}
-	
+
 }
